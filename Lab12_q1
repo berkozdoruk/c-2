@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include "queue.h"
+int main()
+{
+	int number;
+	queue q;
+	queue_init(&q);
+	do
+	{
+		printf("Enter a number(or -1 to STOP):");
+		scanf("%d", &number);
+		enqueu_i(&q, number);
+
+	} while (number!=-1);
+	print_queue(&q);
+	return 0;
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct {
+	char code[8];
+	int credit;
+}course_t;
+
+int main()
+{
+	FILE*inp, *outp;
+	course_t courses;
+
+	inp = fopen("courses.txt", "r");
+	if (inp==NULL)
+	{
+		printf("error");
+	}
+	else
+	{
+		outp = fopen("courses.bin", "wb");
+
+		while (fscanf(inp, "%s %d", courses.code, &courses.credit) != EOF)
+		{
+			fwrite(&courses, sizeof(course_t), 1, outp);
+		}
+		fclose(outp);
+		printf("\n*** The file is created ***\n");
+
+	}
+	//rewind(outp);
+	outp = fopen("courses.bin", "rb");
+	while (!feof(outp))
+	{
+		fread(&courses, sizeof(course_t), 1, outp);
+		if (courses.credit>3)
+		{
+			printf("%s %d\n", courses.code, courses.credit);
+		}
+		
+	}
+	fclose(outp);
+
+
+
+
+
+
+	system("PAUSE");
+	return 0;
+		
+
+
+}
